@@ -1,6 +1,4 @@
-
 // https://en.wikipedia.org/wiki/EtherType
-
 export const ETHER_TYPE_IP4 = "0x0800";
 export const ETHER_TYPE_IP6 = "0x86dd";
 export const ETHER_TYPE_ARP = "0x0806";
@@ -48,3 +46,4 @@ export const PROTOCOLS = [
     {type: PROTOCOL_TCP, shortName: "TCP", longName: 'Transmission Control Protocol'},
     {type: PROTOCOL_UDP, shortName: "UDP", longName: 'User Datagram Protocol'},
 ];
+

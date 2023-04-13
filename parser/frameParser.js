@@ -117,6 +117,7 @@ const readFileHeader = (data) => {
     } else if ( magicNumber === PCAP_HEADER_MAGIC_NUMBER_B8_LE ) {
         endian = ENDIAN.LITTLE;
     } else {
+        console.info('Unable to read magic number from PCAP, found', magicNumber)
         throw new Error('Unable to read magic number from PCAP.');
     }
 

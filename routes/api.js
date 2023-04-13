@@ -24,13 +24,22 @@ apiRoutes.post('/upload', upload.single('file'), function(req, res) {
     return fileData;
   }
 
-  let bufferData = readFileData(file.path);
+  try {
+    
+    let bufferData = readFileData(file.path);
   
-  const { fileHeader, bufferFrames } = getFramesFromBuffer(bufferData);
+    const { fileHeader, bufferFrames } = getFramesFromBuffer(bufferData);
+    
+    let frames = processFrames(fileHeader, bufferFrames);
   
-  let frames = processFrames(fileHeader, bufferFrames);
+    res.status(200).json(frames);
+  
+  } catch (e) {
 
-  res.status(200).json(frames);
+    res.status(400);
+
+  }
+
 
 });
 
