@@ -43,8 +43,4 @@ apiRoutes.post('/upload', upload.single('file'), function(req, res) {
 
 });
 
-apiRoutes.route("/parse").post(function (req, res) {
-    res.status(200).json(items);
-});
-
 export default apiRoutes;
