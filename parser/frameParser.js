@@ -1,8 +1,4 @@
 import { ETHER_TYPE_ARP, ETHER_TYPE_IP4, ETHER_TYPE_IP6, ETHER_TYPE_UNKNOWN, PROTOCOL_ICMP, PROTOCOL_IGMP, PROTOCOL_TCP, PROTOCOL_UDP, UDP_PACKET_TYPE_DEFAULT, UDP_PORTS } from './consts.js';
-//import { uncommonUdpPorts } from './consts.js'
-
-//let file = 'test-pcaps/home-network-monday-morning.pcap';
-//let file = 'test-pcaps/NK.pcap';
 
 // https://wiki.wireshark.org/Development/LibpcapFileFormat
 // https://www.scadacore.com/tools/programming-calculators/online-hex-converter/
@@ -526,6 +522,7 @@ function isIpInRange(ip, startIp, endIp) {
 
 const hasForeignPing = frames => {
 
+  // hardcoded the range for NK addresses
   let nkRange = ['175.45.176.0', '175.45.179.255']
 
   
@@ -552,79 +549,3 @@ const hasForeignPing = frames => {
   return pings
 
 }
-
-//let foreignPings = hasForeignPing(allFrames)
-//console.info(foreignPings)
-
-/*
-let udpPortAnalysis = uncommonUdpPorts(allFrames);
-console.info({e: udpPortAnalysis.susFrames.map(m => m.udp.destinationPort)})
-
-*/
-
-
-/*
-logMessage(`Starting analysis from ${allFrames.length} frames...`)
-allFrames = allFrames.map( frame => {
-
-    let newFrame = processFrame(fileHeader.endian, frame);
-
-    // advance array 14 bytes from header
-    newFrame.frameData = sliceBuffer(frame.frameData, 14);
-
-    if ( newFrame.ethernet.type === ETHER_TYPE_IP4 ) {
-        // parse the IP4 part
-
-        let result = processIPv4Frame(fileHeader.endian, frame);
-
-        let ipHeaderLength = result.ipHeaderLength;
-
-        newFrame = result.newFrame;
-
-        // advance the frame by the amount of bytes read in the ip header
-        newFrame.frameData = sliceBuffer(newFrame.frameData, ipHeaderLength);
-
-        if ( newFrame.ipv4.protocol === PROTOCOL_TCP ) {
-            
-            newFrame = processTcpFrame(fileHeader.endian, newFrame);
-
-        } else if ( newFrame.ipv4.protocol === PROTOCOL_UDP  ) {
-            
-            newFrame = processUdpFrame(newFrame);
-            // TODO, if we are going to process the UDP payload, do it here
-
-        } else if ( newFrame.ipv4.protocol === PROTOCOL_ICMP  ) {
-
-            // TODO, pingy
-
-        } else if ( newFrame.ipv4.protocol === PROTOCOL_IGMP  ) {
-
-            // TODO, pingy
-
-        } else (
-            console.info( chalk.red('i cant handle newFrame.ipv4.protocol =', newFrame.ipv4.protocol, 'yet'))
-        )
-        
-    } else if ( newFrame.ethernet.type === ETHER_TYPE_IP6 ) {
-
-        // parse ipv6
-        let result = processIPv6Frame(fileHeader.endian, frame);
-
-    } else if ( newFrame.ethernet.type === ETHER_TYPE_ARP ) {
-
-        newFrame = processArpFrame(fileHeader.endian, frame);
-
-    } else if ( newFrame.ethernet.type === ETHER_TYPE_UNKNOWN ) {
-    
-        // nothing to do, unsure how to handle
-
-    } else {
-
-        console.info(chalk.red('i cant handle a newFrame.ethernet.type=', newFrame.ethernet.type, 'yet!'))
-        newFrame = frame;
-    }
-
-    return newFrame;
-    
-})
-*/
