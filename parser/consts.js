@@ -16,6 +16,7 @@ export const UDP_PACKET_NETBIOS_NAME_SERVICE = "UDP_PACKET_NETBIOS_NAME_SERVICE"
 
 export const UDP_PACKET_DROPBOX_LAN_SYNC = "UDP_PACKET_DROPBOX_LAN_SYNC"; // 17500
 export const UDP_PACKET_SPOTIFY = "UDP_PACKET_SPOTIFY"; // 4070
+export const UDP_NETBIOS_DATAGRAM_SERVICE = "UDP_NETBIOS_DATAGRAM_SERVICE"; // 138
 
 export const UDP_PORTS = [
     {type: UDP_PACKET_TYPE_DNS, shortName: "DNS", longName: 'DNS', port: 53},
@@ -26,6 +27,7 @@ export const UDP_PORTS = [
     {type: UDP_PACKET_NETBIOS_NAME_SERVICE, shortName: "NBNS", longName: 'NBNS', port: 137},
     {type: UDP_PACKET_DROPBOX_LAN_SYNC, shortName: "Dropbox", longName: 'Dropbox', port: 17500},
     {type: UDP_PACKET_SPOTIFY, shortName: "Spotify", longName: 'Spotify', port: 4070},
+    {type: UDP_NETBIOS_DATAGRAM_SERVICE, shortName: "NETBIOS", longName: 'NETBIOS', port: 138},
 ]
 
 export const ETHER_TYPES = [
